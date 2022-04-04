@@ -7,6 +7,8 @@ dotenv.config({ path: 'config/config.env' });
 //Connecting Database
 connectDatabase()
 
+// app.options('*', cors())
+
 //Handling Uncaught Exception
 process.on('uncaughtException', (err) => {
     console.log(`Error ${err.message}`);

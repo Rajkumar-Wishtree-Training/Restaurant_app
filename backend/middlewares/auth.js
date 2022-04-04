@@ -12,7 +12,11 @@ exports.isAuthenticated = catchAsyncErrors(async (req , res , next) => {
 
     const decodedUser = jwt.verify(token , process.env.JWT_SECRET)
     // console.log(decodedUser);
-    req.user =await User.findById(decodedUser.id)
+    const user = await User.findOne({_id : decodedUser.id , deleted : false})
+    if(!user){
+        return next(new ErrorHandler('UnAuthorized User' , 401))
+    }
+    req.user = user
     next()
 })
 

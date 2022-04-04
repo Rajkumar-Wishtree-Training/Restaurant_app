@@ -52,9 +52,9 @@ exports.updateMenuItem = catchAsyncErrors(async (req , res , next) => {
 
 //Delete(Soft) Menu Item --Admin
 exports.deleteMenuItem = catchAsyncErrors(async (req , res , next) => {
-    console.log(req.params.id);
+    // console.log(req.params.id);
     let menu = await Menu.findOne({_id : req.params.id , deleted : false})
-    console.log(menu);
+    // console.log(menu);
     if(!menu){
         return next(new ErrorHandler(`Menu not found with Given Id : ${req.params.id}`))
     }

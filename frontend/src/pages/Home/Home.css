@@ -1,0 +1,66 @@
+.home{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2vmax auto;
+    width: 80vw;
+    max-width: 100%;
+  }
+.menuCard {
+    width: 16vmax;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: rgb(48, 48, 48);
+    margin: 2vmax 1vmax;
+    transition: all 0.5s;
+    padding-bottom: 0.5vmax;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  .menuCard > img {
+   max-height: 14vmax;
+  }
+
+  .menuCard > p {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 1.3vmax;
+    margin: 1vmax 0.5vmax;
+    margin-bottom: 0;
+  }
+  .menuCard > h5{
+    font-size: 1.2vmax;
+    font-weight: 400;
+    margin: 0 0.5vmax;
+    color: grey;
+  }
+  .dietLogo{
+    width: 2vmax;
+    height: 2vmax;
+    position: relative;
+    display: inline;
+    right: 0;
+  }
+  .menuCard > div {
+    font-size: 1.2vmax;
+    margin: 1vmax;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .menuCard > span {
+    margin: 0.5vmax;
+    color: tomato;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 1vmax;
+  }
+  .menuCard:hover {
+    box-shadow: 0 0 15px rgba(15, 15, 15, 0.26);
+    color: rgb(48, 48, 48);
+    transform: translateY(-1vmax);
+  }
+
+  

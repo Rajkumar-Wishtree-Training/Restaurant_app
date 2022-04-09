@@ -23,13 +23,21 @@ exports.getAllMenuItems = catchAsyncErrors(async (req , res , next) =>{
     const apiFeatures = new ApiFeatures(Menu.find({deleted : false}) , req.query)
     .search()
     .filter()
-    .pagination(resultPerPage)
-    const menuItems = await apiFeatures.query;
+   
+    let menuItems = await apiFeatures.query;
+
+    let filteredProductCount = menuItems.length;
+
+    apiFeatures.pagination(resultPerPage)
+
+    menuItems =await apiFeatures.query.clone()
 
     res.status(200).json({
         success : true,
         totalResult,
-        menuItems
+        menuItems,
+        resultPerPage,
+        filteredProductCount
     })
 })
 

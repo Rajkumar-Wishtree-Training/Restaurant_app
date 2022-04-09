@@ -30,6 +30,7 @@ class ApiFeatures {
     }
     pagination(resultPerPage){
         // converting string in to number
+        // console.log("in side pagination");
         const currentPage = Number(this.queryStr.page) || 1
         const skip = resultPerPage * (currentPage - 1);
         this.query = this.query.limit(resultPerPage).skip(skip)

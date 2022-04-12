@@ -1,28 +1,26 @@
 .signUp{
-    height: calc(100vh - 150px);
+    height: fit-content;
     width: 50vw  ;
-    margin:2vmax auto;
+    margin:4vmax auto;
     /* padding-top: 2vmax; */
     -webkit-box-shadow: 1px -2px 17px 7px rgba(140,136,140,1);
     -moz-box-shadow: 1px -2px 17px 7px rgba(140,136,140,1);
     box-shadow: 1px -2px 17px 7px rgba(140,136,140,1);
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
+    align-items: center; */
 }
 .signUpTitle{
-    position: absolute;
+    /* position: absolute; */
     font-size: 3vmax;
-    flex: 1;
-    /* padding-bottom: 10vmax; */
+    /* flex: 1; */
+    padding-bottom: 2vmax;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    top: 6vmax;
+    /* top: 6vmax; */
     color: lightgrey;
-}
-.signUpForm{
-    
-    flex: 1;
+} 
+.signUpForm > form{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -47,7 +45,8 @@ input{
     border-radius: 5px;
 }
 p{
-    font-size: 1vmax;
+    font-size: 1.5vmax;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-top: 1vmax;
+    margin-bottom: 2vmax;
 }

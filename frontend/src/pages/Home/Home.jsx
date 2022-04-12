@@ -4,12 +4,13 @@ import Loader from "../../component/Loader/Loader";
 import { useSelector, useDispatch } from "react-redux";
 import "./Home.css";
 import Search from "../../component/Search/Search.js";
-import { getMenuItems } from "../../redux/actions/MenuAction";
+import { clearMenuErrors, getMenuItems } from "../../redux/actions/MenuAction";
 import { useAlert } from "react-alert";
-import { useLocation } from "react-router-dom";
+import { useLocation} from "react-router-dom";
 import Pagination from "react-js-pagination";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
+import { clearErrors } from "../../redux/actions/authAction";
 
 const categories = [
   "All",
@@ -22,23 +23,29 @@ const categories = [
 
 function Home() {
   const location = useLocation();
+  // const navigate = useNavigate()
+  const alert = useAlert();
+  const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [category , setCategory] = useState("")
   const [price ,setPrice] = useState([0,3000])
-  const alert = useAlert();
-  const dispatch = useDispatch();
-  const { menus, menuCount, filteredProductCount, resultPerPage, loading, error } = useSelector(
+  
+  const { menus, menuCount, filteredProductCount, resultPerPage, loading } = useSelector(
     (state) => state.menuList
   );
+  const { error , isAuthenticated} = useSelector(state => state.userDetails)
   const keyword = location.pathname.split("/")[1];
-  console.log(keyword);
+  // console.log(keyword);
+  
   useEffect(() => {
-    if (error) {
-      return alert.error(error);
+      dispatch(getMenuItems(keyword, currentPage , price , category));
+    if(error){
+      alert.error(error)
     }
-    console.log(currentPage);
-    dispatch(getMenuItems(keyword, currentPage , price , category));
-  }, [dispatch, alert, error, keyword, currentPage , price , category]);
+    dispatch(clearMenuErrors())
+    dispatch(clearErrors())
+    }
+  , [dispatch, alert, error, keyword, currentPage , price , category , isAuthenticated]);
   
   //set current page no
   const setCurrentPageNo = (e) => {
@@ -66,7 +73,7 @@ function Home() {
         {resultPerPage < filteredProductCount && (
           <Pagination
             activePage={currentPage}
-            itemsCountPerPage={resultPerPage}
+            itemsCountPerPage={Number(resultPerPage)}
             totalItemsCount={menuCount}
             onChange={setCurrentPageNo}
             nextPageText="Next"

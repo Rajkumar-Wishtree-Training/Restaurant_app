@@ -2,11 +2,26 @@ const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const Menu = require('../models/menuModel');
 const ApiFeatures = require('../utils/apiFeatures');
 const ErrorHandler = require('../utils/errorhandler');
+const cloudinary = require('cloudinary')
 
 //Create Menu Item --Admin
 exports.createMenuItem = catchAsyncErrors(async (req , res , next) =>{
     req.body.user = req.user.id;
-    const menuItem =await Menu.create(req.body);
+    // console.log(req.body);
+    const {name , price , category , diet , description , image , user} = req.body
+    const myCloud = await cloudinary.v2.uploader.upload(image , {
+        folder : 'MenuItems',
+        width : 150,
+        crop : "scale"
+    })
+    
+    const menuItem =await Menu.create({
+     name , price , category , diet , description, user ,
+        image : {
+            public_id : myCloud.public_id,
+            url : myCloud.secure_url
+        }
+    });
 
     await menuItem.save()
   
@@ -38,6 +53,17 @@ exports.getAllMenuItems = catchAsyncErrors(async (req , res , next) =>{
         menuItems,
         resultPerPage,
         filteredProductCount
+    })
+})
+//Get all Menu Items(Admin)
+exports.getAdminMenuItems = catchAsyncErrors(async (req , res , next) =>{
+    const totalResult =await Menu.countDocuments({deleted : false})
+   const menuItems = await Menu.find({deleted : false})
+
+    res.status(200).json({
+        success : true,
+        totalResult,
+        menuItems,
     })
 })
 

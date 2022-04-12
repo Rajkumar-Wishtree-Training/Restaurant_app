@@ -5,7 +5,7 @@ import nonveg from '../images/nonveg.png'
 function MenuCard({ menu }) {
   return (
     <div className='menuCard'>
-      <img src={menu.images[0].url} alt={menu.name} />
+      <img src={menu.image.url} alt={menu.name} />
       <p>
         {menu.name}
         {menu.diet === 'Veg' ? <img className='dietLogo' src={veg} alt="Veg" /> : <img className='dietLogo' src={nonveg} alt="non-veg" />}

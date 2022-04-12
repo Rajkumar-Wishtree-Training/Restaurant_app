@@ -17,7 +17,7 @@ const menuSchema = new mongoose.Schema({
        type:String,
        required: [true, "Please Enter Diet"]
     },
-    images: [
+    image:
         {
             public_id: {
                 type: String,
@@ -28,8 +28,7 @@ const menuSchema = new mongoose.Schema({
                 required: true
             }
 
-        }
-    ],
+        },
     category: {
         type: String,
         required: [true, 'Please Enter Food Category']

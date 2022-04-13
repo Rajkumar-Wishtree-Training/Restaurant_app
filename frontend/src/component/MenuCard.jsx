@@ -8,7 +8,7 @@ function MenuCard({ menu }) {
       <img src={menu.image.url} alt={menu.name} />
       <p>
         {menu.name}
-        {menu.diet === 'Veg' ? <img className='dietLogo' src={veg} alt="Veg" /> : <img className='dietLogo' src={nonveg} alt="non-veg" />}
+        {menu.diet === 'veg' ? <img className='dietLogo' src={veg} alt="Veg" /> : <img className='dietLogo' src={nonveg} alt="non-veg" />}
       </p>
       <h5>
         {menu.category}

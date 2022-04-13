@@ -2,25 +2,26 @@ import React, { Fragment, useEffect } from 'react'
 import { DataGrid } from '@material-ui/data-grid'
 import './MenuList.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { clearMenuErrors, getAdminMenuItems } from '../../redux/actions/MenuAction'
-import { Link } from 'react-router-dom'
+import { clearMenuErrors, deleteMenuItem, getAdminMenuItems } from '../../redux/actions/MenuAction'
+import { Link , useNavigate } from 'react-router-dom'
 import { useAlert } from 'react-alert'
 import { Button } from '@material-ui/core'
 import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import SideBar from './Sidebar'
+import { DELETE_MENU_RESET } from '../../redux/reducers/MenuSlice'
 
 
 
 const MenuList = () => {
     const dispatch = useDispatch();
-
+    const navigate = useNavigate()
     const alert = useAlert();
 
-    const { error, menus } = useSelector(state => state.menuList)
+    const { error, menus , isDeleted } = useSelector(state => state.menuList)
 
-    const deleteProductHandler = () => {
-
+    const deleteProductHandler = (id) => {
+      dispatch(deleteMenuItem(id))
     }
 
     useEffect(() => {
@@ -28,8 +29,14 @@ const MenuList = () => {
             alert.error(error);
             dispatch(clearMenuErrors());
         }
+        if(isDeleted){
+          alert.success("Item Deleted")
+          navigate('/admin/dashboard')
+          dispatch(DELETE_MENU_RESET())
+          
+        }
         dispatch(getAdminMenuItems());
-    },[alert , dispatch , error])
+    },[alert , dispatch , error , isDeleted , navigate])
 
     const columns = [
         { field: "id", headerName: "Menu ID", minWidth: 220, flex: 0.5 },
@@ -64,7 +71,7 @@ const MenuList = () => {
           renderCell: (params) => {
             return (
               <Fragment>
-                <Link to={`/admin/product/${params.getValue(params.id, "id")}`}>
+                <Link to={`/admin/menu/${params.getValue(params.id, "id")}`}>
                   <EditIcon />
                 </Link>
     

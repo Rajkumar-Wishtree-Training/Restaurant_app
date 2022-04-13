@@ -69,6 +69,19 @@ export const signUpSlice = createSlice({
             state.loading = false
             state.error = action.payload
         },
+        GMAIL_LOGIN_REQUEST : (state , action) => {
+            state.loading = true
+        },
+        GMAIL_LOGIN_SUCCESS : (state , action) => {
+            state.loading = false
+            state.data = action.payload
+            state.isAuthenticated = true
+        },
+        GMAIL_LOGIN_FAIL : (state , action) => {
+            state.loading = false
+            state.isAuthenticated = false
+            state.error = action.payload
+        },
         CLEAR_ERRORS : (state , action) => {
             state.error = null
         }
@@ -77,4 +90,4 @@ export const signUpSlice = createSlice({
 })
 // export const { , CLEAR_ERRORS} = loginSlice.actions
 
-export const {LOGIN_REQUEST , LOGIN_SUCCESS , LOGIN_FAIL , CLEAR_ERRORS , SIGN_UP_REQUEST , SIGN_UP_SUCCESS , SIGN_UP_FAIL , LOAD_USER_REQUEST , LOAD_USER_SUCCESS , LOAD_USER_FAIL , LOGOUT_REQUEST , LOGOUT_SUCCESS , LOGOUT_FAIL } = signUpSlice.actions
+export const {LOGIN_REQUEST , LOGIN_SUCCESS , LOGIN_FAIL , CLEAR_ERRORS , SIGN_UP_REQUEST , SIGN_UP_SUCCESS , SIGN_UP_FAIL , LOAD_USER_REQUEST , LOAD_USER_SUCCESS , LOAD_USER_FAIL , LOGOUT_REQUEST , LOGOUT_SUCCESS , LOGOUT_FAIL , GMAIL_LOGIN_REQUEST , GMAIL_LOGIN_SUCCESS, GMAIL_LOGIN_FAIL } = signUpSlice.actions

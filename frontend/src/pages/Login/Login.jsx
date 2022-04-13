@@ -2,8 +2,9 @@ import React , { useState , useEffect } from "react";
 import Google from "../../images/google.png";
 import Facebook from "../../images/facebook.png";
 import { useDispatch , useSelector } from "react-redux";
+import {GoogleLogin } from 'react-google-login'
 import "./Login.css";
-import { loginUser } from "../../redux/actions/authAction";
+import { gmailLogin, loginUser } from "../../redux/actions/authAction";
 import { Link, useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { clearErrors } from "../../redux/actions/authAction";
@@ -30,15 +31,24 @@ function Login() {
     }
     
   };
+  const googleSuccess = async(res) => {
+     dispatch(gmailLogin(res))
+  }
+  const googleFail = () => {
+    alert.error('Google Signin Failed')
+    dispatch(clearErrors())
+  }
   useEffect(() => {
     if(error){
       alert.error(error)
       dispatch(clearErrors())
     }
     if(isAuthenticated && data.role !== 'admin'){
+      alert.success('LogedIn Success')
       return navigate('/')
     }
     if(data.role === 'admin' && isAuthenticated){
+      alert.success('LogedIn Success')
       return navigate('/admin/dashboard')
     }
   },[error , alert , dispatch , data.role , isAuthenticated , navigate])
@@ -47,10 +57,19 @@ function Login() {
       <div className="loginTitle">Choose a Login Method</div>
       <div className="wrapper">
         <div className="left">
-          <div className="loginButton google">
-            <img src={Google} alt="Google" className="icon" />
-            Google
-          </div>
+        <GoogleLogin
+                clientId="708086562860-rqpu9taih3h7632gk6lghtqsns47kgba.apps.googleusercontent.com"
+                render={renderProps => (
+                  <div onClick={renderProps.onClick}  className="loginButton google">
+                      <img src={Google} alt="Google"  className="icon" />
+                      Google
+                    </div>
+                )}
+                buttonText=""
+                onSuccess={googleSuccess}
+                onFailure={googleFail}
+                cookiePolicy={'single_host_origin'}
+        />
           <div className="loginButton facebook">
             <img src={Facebook} alt="Facebook" className="icon" />
             Facebook

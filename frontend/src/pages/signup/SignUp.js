@@ -30,11 +30,12 @@ function SignUp() {
 
   useEffect(() => {
     if (error) {
-      console.log(error);
+      // console.log(error);
       alert.error(error)
       dispatch(clearErrors())
     }
     if(isAuthenticated){
+      alert.success('Welcome to Dilse Foodie Family')
       return navigate('/')
     }
   }, [error, alert, dispatch , isAuthenticated , navigate])

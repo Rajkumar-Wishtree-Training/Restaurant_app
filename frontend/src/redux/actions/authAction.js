@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS ,CLEAR_ERRORS, SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAIL, LOGOUT_REQUEST, LOGOUT_FAIL, LOGOUT_SUCCESS } from "../reducers/authSlice";
+import { LOGIN_FAIL, LOGIN_REQUEST, LOGIN_SUCCESS ,CLEAR_ERRORS, SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAIL, LOAD_USER_REQUEST, LOAD_USER_SUCCESS, LOAD_USER_FAIL, LOGOUT_REQUEST, LOGOUT_FAIL, LOGOUT_SUCCESS, GMAIL_LOGIN_REQUEST, GMAIL_LOGIN_SUCCESS, GMAIL_LOGIN_FAIL } from "../reducers/authSlice";
 
 export const loginUser = (data) =>async (dispatch) => {
     dispatch(LOGIN_REQUEST())
@@ -14,13 +14,25 @@ export const loginUser = (data) =>async (dispatch) => {
     }
 }
 
+export const gmailLogin = (res) => async(dispatch) => {
+    try {
+        dispatch(GMAIL_LOGIN_REQUEST())
+        const link = 'http://localhost:4000/api/v1/gmail/login'
+        const {data} = await axios.post(link , {token : res.tokenId} , {withCredentials : true})
+        // console.log(data);
+        dispatch(GMAIL_LOGIN_SUCCESS(data.user))
+    } catch (error) {
+        dispatch(GMAIL_LOGIN_FAIL(error.response.data.error))
+    }
+}
+
 export const signUpUser = (data) => async (dispatch) => {
     dispatch(SIGN_UP_REQUEST())
     try {
         let link = `http://localhost:4000/api/v1/register`
         const config = { headers: { "Content-Type": "application/json" } };
         const response = await axios.post(link , {...data},{config , withCredentials:true})
-        console.log(response);
+        // console.log(response);
         dispatch(SIGN_UP_SUCCESS(response.data.user))
 
     } catch (error) {
@@ -48,7 +60,7 @@ export const logoutUser = () => async (dispatch) => {
         const config = { headers: { "Content-Type": "application/json" } };
         let link = `http://localhost:4000/api/v1/logout`
         const {message} = await axios.get(link , {config , withCredentials : true})
-        console.log(message);
+        // console.log(message);
         dispatch(LOGOUT_SUCCESS())
     } catch (error) {
         dispatch(LOGOUT_FAIL(error.response.data.error))

@@ -5,6 +5,7 @@ import Login from './pages/Login/Login'
 import Dashboard from './component/Admin/Dashboard.js'
 import MenuList from './component/Admin/MenuList.js'
 import CreateItem from './component/Admin/CreateItem.js'
+import UpdateItem from './component/Admin/UpdateItem.js'
 import {  Routes, Route, Navigate} from 'react-router-dom'
 import SignUp from './pages/signup/SignUp';
 
@@ -37,6 +38,7 @@ function App() {
           <Route exact path='/admin/dashboard' element={isAuthenticated ? <Dashboard/> : <Navigate to='/login'/>}/>
           <Route exact path='/admin/menuitems' element={(isAuthenticated && data.role === 'admin')? <MenuList/> : <Navigate to='/login'/>} />
           <Route exact path='/admin/menu/new' element={(isAuthenticated && data.role === 'admin') ? <CreateItem/> : <Navigate to='/login'/>} />
+          <Route exact path='/admin/menu/:id' element={(isAuthenticated && data.role === 'admin') ? <UpdateItem/> : <Navigate to='/login'/>} />
           <Route exact path='/admin/users' element={(isAuthenticated && data.role === 'admin')? <Dashboard /> : <Navigate to='/login'/>} />
 
         </Routes>

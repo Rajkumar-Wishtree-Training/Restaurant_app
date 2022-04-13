@@ -11,6 +11,11 @@ const client = new OAuth2Client(clientId)
 //Register a User
 exports.registerUser = catchAsyncErrors(async ( req , res , next) => {
     const {name , email , password , confirmPassword} = req.body;
+
+    const isUserExist = await User.findOne({email , deleted :false})
+    if(isUserExist){
+        return next(new ErrorHandler("User Exist with given given email" ,400))
+    }
     //Check password and Confirm password
     if(password !== confirmPassword){
         return next(new ErrorHandler("Password and Confirm Password Mismatch" , 400))
@@ -174,6 +179,6 @@ exports.userLoginWithGmail = catchAsyncErrors(async (req , res , next) => {
     if(!user){
         return next(new ErrorHandler('User login failed' , 400))
     }
-    console.log("Gmail Success");
+    // console.log("Gmail Success");
     sendToken(user , 200 , res)
 })

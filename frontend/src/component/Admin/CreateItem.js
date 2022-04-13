@@ -50,7 +50,7 @@ const CreateItem = () => {
     myForm.set("description",description)
     myForm.set("diet" , diet)
     myForm.set("image", image);
-    console.log(image);
+    // console.log(image);
     dispatch(createMenuItem({name , price , category , diet , description , image }));
   };
   const createMenuImageChange = (e) => {

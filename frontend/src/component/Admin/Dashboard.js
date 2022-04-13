@@ -9,9 +9,9 @@ import { getAdminMenuItems } from '../../redux/actions/MenuAction.js'
 const Dashboard = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const {data , isAuthenticated} = useSelector(state => state.userDetails)
+  const { isAuthenticated} = useSelector(state => state.userDetails)
   const {menus } = useSelector(state => state.menuList)            
-  console.log(data , data.role);
+  // console.log(data , data.role);
   useEffect(()=>{
    dispatch(getAdminMenuItems())
   },[isAuthenticated , navigate , dispatch])
@@ -23,7 +23,7 @@ const Dashboard = () => {
 
         <div className="dashboardSummary">
           <div className="dashboardSummaryBox2">
-            <Link to="/admin/products">
+            <Link to="/admin/menuitems">
               <p>Menus</p>
               <p>{menus && menus.length}</p>
             </Link>

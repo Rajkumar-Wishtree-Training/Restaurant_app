@@ -1,0 +1,17 @@
+.pageNotFound{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vmax;
+    font-weight: 400;
+    font-family:  Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.pageNotFound > a{
+    font-size: 2vmax;
+    margin-top: 3vmax;
+    font-family:  Tahoma, Geneva, Verdana, sans-serif;
+    text-decoration: none;
+}

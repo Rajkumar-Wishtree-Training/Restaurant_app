@@ -59,7 +59,7 @@ export const logoutUser = () => async (dispatch) => {
         dispatch(LOGOUT_REQUEST())
         const config = { headers: { "Content-Type": "application/json" } };
         let link = `http://localhost:4000/api/v1/logout`
-        const {message} = await axios.get(link , {config , withCredentials : true})
+         await axios.get(link , {config , withCredentials : true})
         // console.log(message);
         dispatch(LOGOUT_SUCCESS())
     } catch (error) {

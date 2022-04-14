@@ -11,6 +11,7 @@ import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { CREATE_MENU_RESET } from "../../redux/reducers/MenuSlice";
+import MetaData from "../MetaData";
 
 const categories = [
     "punjabi",
@@ -80,6 +81,7 @@ const CreateItem = () => {
 
   return (
     <Fragment>
+      <MetaData title='Dilse Foodie -Admin --Create Menu'/>
     <div className="dashboard">
       <SideBar />
       <div className="newProductContainer">

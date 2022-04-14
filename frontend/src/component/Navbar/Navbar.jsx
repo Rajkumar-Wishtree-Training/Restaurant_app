@@ -2,18 +2,19 @@ import React, { } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { logoutUser } from '../../redux/actions/authAction'
+import { useAlert } from 'react-alert'
 import './Navbar.css'
 
 function Navbar({isAuthenticated , data}) {
     // const {data, isAuthenticated} = useSelector(state => state.loginDetails)
+    const alert = useAlert()
     const dispatch = useDispatch()
     const onClickLogout = () => {
-       try {
         dispatch(logoutUser())
-       } catch (error) {
-            
-       }
+        alert.success('Log Out Success')
+        
     }
+
   return (
    <div className="navbar">
        <span className="logo"><Link className='link' to='/'>Dilse Foodie</Link></span>

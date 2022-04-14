@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector , useDispatch } from 'react-redux'
 import './Dashboard.css'
 import { getAdminMenuItems } from '../../redux/actions/MenuAction.js'
+import MetaData from '../MetaData.js'
 
 const Dashboard = () => {
   const navigate = useNavigate()
@@ -17,6 +18,7 @@ const Dashboard = () => {
   },[isAuthenticated , navigate , dispatch])
   return (
     <div className="dashboard">
+      <MetaData title='Dilse Foodie --Dashboard'/>
       <Sidebar />
       <div className="dashboardContainer">
         <Typography component="h1">Dashboard</Typography>

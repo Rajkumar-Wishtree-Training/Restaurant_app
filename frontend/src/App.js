@@ -8,7 +8,7 @@ import CreateItem from './component/Admin/CreateItem.js'
 import UpdateItem from './component/Admin/UpdateItem.js'
 import {  Routes, Route, Navigate} from 'react-router-dom'
 import SignUp from './pages/signup/SignUp';
-
+import PageNotFound from './pages/PageNotFound/PageNotFound.js'
 
 import { useSelector} from 'react-redux';
 import { useEffect } from 'react'
@@ -40,6 +40,8 @@ function App() {
           <Route exact path='/admin/menu/new' element={(isAuthenticated && data.role === 'admin') ? <CreateItem/> : <Navigate to='/login'/>} />
           <Route exact path='/admin/menu/:id' element={(isAuthenticated && data.role === 'admin') ? <UpdateItem/> : <Navigate to='/login'/>} />
           <Route exact path='/admin/users' element={(isAuthenticated && data.role === 'admin')? <Dashboard /> : <Navigate to='/login'/>} />
+
+          <Route path='*' element={<PageNotFound/>}/>
 
         </Routes>
       </>

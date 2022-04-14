@@ -11,6 +11,7 @@ import Pagination from "react-js-pagination";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 import { clearErrors } from "../../redux/actions/authAction";
+import MetaData from "../../component/MetaData";
 
 const categories = [
   "All",
@@ -65,6 +66,7 @@ function Home() {
     <Loader />
   ) : (
     <Fragment>
+      <MetaData title='Dilse Foodie'/>
       <Search />
       <div className="home">
         {menus && menus.map((menu) => <MenuCard key={menu._id} menu={menu} />)}

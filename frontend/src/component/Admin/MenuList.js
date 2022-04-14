@@ -10,6 +10,7 @@ import EditIcon from '@material-ui/icons/Edit'
 import DeleteIcon from '@material-ui/icons/Delete'
 import SideBar from './Sidebar'
 import { DELETE_MENU_RESET } from '../../redux/reducers/MenuSlice'
+import MetaData from '../MetaData'
 
 
 
@@ -100,7 +101,7 @@ const MenuList = () => {
         });
     return (
         <Fragment>
-  
+        <MetaData title='Dilse Foodie --List'/>
         <div className="dashboard">
           <SideBar />
           <div className="productListContainer">

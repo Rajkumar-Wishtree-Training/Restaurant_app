@@ -11,6 +11,7 @@ import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
 import { UPDATE_MENU_RESET } from "../../redux/reducers/MenuSlice";
+import MetaData from "../MetaData";
 
 const categories = [
     "punjabi",
@@ -97,6 +98,7 @@ const UpdateItem = () => {
 
     return (
         <Fragment>
+            <MetaData title='Dilse Foodie --Update Product'/>
             <div className="dashboard">
                 <SideBar />
                 <div className="newProductContainer">

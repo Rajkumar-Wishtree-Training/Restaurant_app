@@ -8,6 +8,7 @@ import { gmailLogin, loginUser } from "../../redux/actions/authAction";
 import { Link, useNavigate } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { clearErrors } from "../../redux/actions/authAction";
+import MetaData from "../../component/MetaData";
 
 const initialState = {
   'email' : '',
@@ -54,6 +55,7 @@ function Login() {
   },[error , alert , dispatch , data.role , isAuthenticated , navigate])
   return (
     <div className="login">
+      <MetaData title='Dilse Foodie -- Login'/>
       <div className="loginTitle">Choose a Login Method</div>
       <div className="wrapper">
         <div className="left">

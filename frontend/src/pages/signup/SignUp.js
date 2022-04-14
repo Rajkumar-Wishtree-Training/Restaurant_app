@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { clearErrors, signUpUser } from '../../redux/actions/authAction'
 import { useAlert } from 'react-alert'
 import './SignUp.css'
+import MetaData from '../../component/MetaData'
 
 const intialValues = {
   name: '',
@@ -41,7 +42,7 @@ function SignUp() {
   }, [error, alert, dispatch , isAuthenticated , navigate])
   return (
     <div className='signUp'>
-
+      <MetaData title='Dilse Foodie -- Sign Up'/>
       <div className="signUpForm">
         <form onSubmit={onSubmitHandler}>
           <div className="signUpTitle">Sign Up</div>
